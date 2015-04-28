@@ -1,0 +1,330 @@
+" ~/.vimrc
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" General
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" get out of horrible vi-compatible mode
+set nocompatible
+" detect the type of file
+filetype on
+" how many lines of history to remember
+set history=1000
+" ask what to do about unsaved/read-only files
+set confirm
+" share clipboard with windows clipboard
+set clipboard+=unnamed
+" automatically detected values for fileformat in this order
+set fileformats=unix,dos,mac
+" load filetype plugins
+filetype plugin on
+" load indent files for specific filetypes
+filetype indent on
+" save global variables that consists of upper case letters
+set viminfo+=!
+" none of these should be word dividers, so make them not be
+set iskeyword+=_,$,@,%,#,-
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Theme/Colors
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" we are using a dark background
+set background=dark
+" syntax highlighting on
+syntax on
+" Load color scheme from ~/.vim/colors
+colorscheme molokai
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Files/Backups
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" make backup file
+"set backup
+set nobackup
+" where to put backup file (don't forget to make a backup directory)
+" set backupdir=./.backup,~/.backup,.,/tmp
+" directory is the directory for temp file
+" set directory=.,~/tmp,/var/tmp,/tmp
+" Name of the errorfile for the :make command
+" set makeef=make.err
+" No SWAP files
+set noswapfile
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Vim UI
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" number of pixel lines inserted between characters
+set linespace=0
+" command-line completion operates in an enhanced mode
+set wildmenu
+" Show the line and column number of the cursor position
+set ruler
+" Number of screen lines to use for the command-line
+set cmdheight=2
+" Print the line number in front of each line
+set number
+" do not redraw while running macros (much faster) (LazyRedraw)
+set lazyredraw
+" buffer becomes hidden when it is abandoned
+" set hidden
+" make backspace work normal (indent, eol, start)
+set backspace=2
+" allow backspace and cursor keys to cross line boundaries
+set whichwrap+=<,>,h,l
+" use mouse everywhere
+set mouse=a
+" shortens messages to avoid 'press a key' prompt
+set shortmess=atI
+" tell us when any line is changed via : commands
+set report=0
+" don't make noise on error messages
+set noerrorbells
+" make the splitters between windows be blank
+set fillchars=vert:\ ,stl:\ ,stlnc:\
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Visual Cues
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" show matching brackets for a moment
+set showmatch
+" how many tenths of a second to blink matching brackets for
+set matchtime=5
+" do not highlight searched phrases
+set nohlsearch
+"set hlsearch
+" but do highlight as you type you search phrase
+set incsearch
+" Ignore case when searching
+set ignorecase
+" When searching, try to be smart about cases
+set smartcase
+" what to show when I hit :set list
+set listchars=tab:\|\ ,trail:.,extends:>,precedes:<,eol:$
+" 30 lines tall
+set lines=30
+" 100 cols wide
+set columns=100
+" Minimal number of screen lines to keep above and below the cursor
+set scrolloff=10
+" don't blink
+set novisualbell
+" When nonempty, this option determines the content of the status line
+set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [ASCII=\%03.3b]\ [HEX=\%02.2B]\ [POS=%04l,%04v][%p%%]\ [LEN=%L]
+" always show the status line
+set laststatus=2
+" Highlight current cursor line
+set cursorline
+" Highligh line
+highlight LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE guifg=DarkGrey guibg=#252525
+
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Text Formatting/Layout
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" take indent for new line from previous line
+set autoindent
+" smart autoindenting for C programs
+set smartindent
+" do c-style indenting
+set cindent
+" Toggle auto indent for code paste using F3
+set pastetoggle=<F3>
+" real tabs please!
+set noexpandtab
+" tab spacing (settings below are just to unify it)
+set tabstop=4
+" unify
+set softtabstop=4
+" unify
+set shiftwidth=4
+" use tabs at the start of a line, spaces elsewhere
+set smarttab
+" Wrap lines (or not)
+"set nowrap
+set wrap
+" how automatic formatting is to be done
+set formatoptions=tcrqn
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Folding
+" Enable folding, but by default make it act like folding is off, because
+" folding is annoying in anything but a few rare cases
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Turn on folding
+set foldenable
+" Make folding indent sensitive
+set foldmethod=indent
+" Don't autofold anything (but I can still fold manually)
+set foldlevel=100
+" don't open folds when you search into them
+set foldopen-=search
+" don't open folds when you undo stuff
+set foldopen-=undo
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Custom key mapping
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Space maps to search (/)
+map <SPACE> /
+" Control-Space maps to search backwards
+map <C-SPACE> ?
+" Control-N twice toggle line numbers
+map <C-N><C-N> :set invnumber<CR>
+
+" Move a line of text using ALT+[jk]
+nnoremap <A-j> :m .+1<CR>==
+nnoremap <A-k> :m .-2<CR>==
+inoremap <A-j> <ESC>:m .+1<CR>==gi
+inoremap <A-k> <ESC>:m .-2<CR>==gi
+vnoremap <A-j> :m '>+1<CR>gv=gv
+vnoremap <A-k> :m '<-2<CR>gv=gv
+" Move a line of text using ALT+[up down]
+nnoremap <A-DOWN> :m .+1<CR>==
+nnoremap <A-UP>   :m .-2<CR>==
+inoremap <A-DOWN> <ESC>:m .+1<CR>==gi
+inoremap <A-UP>   <ESC>:m .-2<CR>==gi
+vnoremap <A-DOWN> :m '>+1<CR>gv=gv
+vnoremap <A-UP>   :m '<-2<CR>gv=gv
+
+" Resize buffer using CTRL+[hjkl]
+"inoremap <silent> <C-h> <ESC>:vertical resize -5<CR>gi
+"inoremap <silent> <C-j> <ESC>:resize -5<CR>gi
+"inoremap <silent> <C-k> <ESC>:resize +5<CR>gi
+"inoremap <silent> <C-l> <ESC>:vertical resize +5<CR>gi
+
+" Easier split navigation using CTRL+ALT+[hjkl]
+"nnoremap <silent> <C-h> <C-w><C-h>
+"nnoremap <silent> <C-j> <C-w><C-j>
+"nnoremap <silent> <C-k> <C-w><C-k>
+"nnoremap <silent> <C-l> <C-w><C-l>
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Return to last edit position when opening files
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+autocmd BufReadPost *
+	\ if line("'\"") > 0 && line("'\"") <= line("$") |
+	\	exe "normal! g'\"" |
+	\ endif
+" Remember info about open buffers on close
+set viminfo^=%
+
+
+so ~/Scripts/cscope_maps.vim
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" taglist
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let Tlist_Auto_Highlight_Tag = 1
+let Tlist_Auto_Open = 0
+let Tlist_Auto_Update = 1
+let Tlist_Compact_Format = 1 
+let Tlist_Display_Tag_Scope = 1
+let Tlist_Enable_Fold_Column = 1
+let Tlist_Exit_OnlyWindow = 1
+let Tlist_File_Fold_Auto_Close = 1
+let Tlist_GainFocus_On_ToggleOpen = 0
+let Tlist_Highlight_Tag_On_BufEnter = 1
+let Tlist_Inc_Winwidth = 1
+let Tlist_Max_Tag_Length = 100
+let Tlist_Process_File_Always = 0
+let Tlist_Show_Menu = 1
+let Tlist_Show_One_File = 0
+let Tlist_Use_Horiz_Window = 0
+let Tlist_Use_Right_Window = 1
+let Tlist_Use_SingleClick = 0
+"Tlist_WinHeight
+"Tlist_WinWidt
+
+nmap <silent> <leader>tl :Tlist<CR>
+nmap <silent> <F7> :Tlist<CR>
+
+if has("win32")
+    let Tlist_Ctags_Cmd = '   ctags'
+else
+    let Tlist_Ctags_Cmd = '/usr/bin/ctags'
+endif
+" Open Tag List automatically when VIM starts
+"autocmd VimEnter * :Tlist
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" winmanager
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"let g:winManagerWindowLayout='NERDTree|BufExplorer'
+"let g:winManagerWindowLayout = 'FileExplorer|TagList'
+"let g:winManagerWindowLayout = 'FileExplorer'
+let g:winManagerWindowLayout = 'TagList'
+let g:winManagerWidth = 40
+let g:bufExplorerMaxHeight = 30
+"let g:defaultExplorer = 0
+"let g:NERDTree_title = "File Explorer"
+"let g:BufExplorer_title = "Buffer Explorer"
+"let g:FileExplorer_title = "File Explorer"
+nmap wm :WMToggle<CR>
+nmap <F6> :WMToggle<CR>
+nmap <C-W><C-F> :FirstExplorerWindow<cr>
+nmap <C-W><C-B> :BottomExplorerWindow<cr>
+autocmd BufWinEnter \[Buf\ List\] setl nonumber
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" minibufexpl
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:miniBufExplAutoStart = 1
+let g:miniBufExplBuffersNeeded = 1
+let g:miniBufExplCycleArround = 1
+" Control + VIM Direction keys to navigate windows
+noremap <C-J>     <C-W>j
+noremap <C-K>     <C-W>k
+noremap <C-H>     <C-W>h
+noremap <C-L>     <C-W>l
+" Control + Arrow keys to navigate windows
+noremap <C-Down>  <C-W>j
+noremap <C-Up>    <C-W>k
+noremap <C-Left>  <C-W>h
+noremap <C-Right> <C-W>l
+" Control + TAB and Control + Shift + TAB to switch buffers
+noremap <C-TAB>   :MBEbn<CR>
+noremap <C-S-TAB> :MBEbp<CR>
+" Control + PageUp and Control + PageDown to switch buffers
+noremap <C-PageDown>	:MBEbn<CR>
+noremap <C-PageUp>		:MBEbp<CR>
+" MiniBufExpl Colors
+hi MBEVisibleActiveNormal guifg=#A6DB29 guibg=fg
+hi MBEVisibleActiveChanged guifg=#F1266F guibg=fg
+hi MBEVisibleChanged guifg=#F2528C guibg=fg
+hi MBEVisibleNormal guifg=#5DC2D6 guibg=fg
+hi MBEChanged guifg=#B34D06 guibg=fg
+hi MBENormal guifg=#808080 guibg=fg
+" Avoid overhiding defined colors
+let g:did_minibufexplorer_syntax_inits = 1
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" netrw
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"let g:netrw_winsize = 20
+"nmap <silent> <leader>fe :Sexplore!<cr>
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" NERDTree
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:NERDTreeWinPos = "right"
+"let g:NERDChristmasTree = 1
+"let g:NERDTreeAutoCenter = 1
+"let g:NERDTreeAutoCenterTreshold = 3
+"let g:NERDTreeHighlightCursorLine = 1
+let g:NERDTreeMinimalUI = 1
+let g:NERDTreeShowBookmarks = 1
+" ALT-m toggle NERDTree
+nnoremap <silent> <F8> :NERDTreeToggle<CR>
+
