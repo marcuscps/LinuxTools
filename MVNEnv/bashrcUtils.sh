@@ -5,7 +5,7 @@ alias clearx='echo -en \\033c'
 
 bind -x '"\C-K": "clearx"'
 
-source ~/Scripts/definePrompt.sh
+source ~/MVNEnv/definePrompt.sh
 
 export SSH_ASKPASS=ssh-askpass
 

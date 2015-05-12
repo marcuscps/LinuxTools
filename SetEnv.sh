@@ -1,13 +1,13 @@
 #!/bin/bash
 
 # Configuration
-DEFAULT_PROJ_FILE=`readlink ~/Scripts/Projs/Default`
+DEFAULT_PROJ_FILE=`readlink ~/MVNEnv/Projs/Default`
 DEFAULT_PROJ=${DEFAULT_PROJ_FILE/.sh/}
 
 #==============================================================================
 #= Pre configuration
 #==============================================================================
-. ~/Scripts/defineColors.sh
+. ~/MVNEnv/defineColors.sh
 
 echo -e "${CWHITE}Configuring ${CYELLOW}Samsung ${CWHITE}environment ${CYELLOW}(by Marcus)${CWHITE}...${CEND}"
 
@@ -18,12 +18,12 @@ if [ "${PROJ_NAME}" == "" ]; then
 	PROJ_NAME=${DEFAULT_PROJ}
 fi
 
-echo -e "Searching for project configuration file: ${CCYAN}~/Scripts/Projs/${PROJ_NAME}.sh${CEND}"
-if [ ! -f ~/Scripts/Projs/${PROJ_NAME}.sh ]; then
+echo -e "Searching for project configuration file: ${CCYAN}~/MVNEnv/Projs/${PROJ_NAME}.sh${CEND}"
+if [ ! -f ~/MVNEnv/Projs/${PROJ_NAME}.sh ]; then
 	echo -e "    ${CLRED}FAIL.${CEND}"
 	echo -e "${CLRED}Invalid project name. Aborting (no side effects)...${CEND}"
 	echo -e "${CCYAN}Available projects:${CEND}"
-	for ii in `ls ~/Scripts/Projs`; do
+	for ii in `ls ~/MVNEnv/Projs`; do
 		echo -e "\t${CYELLOW}${ii%.sh}${CEND}"
 	done
 	echo -e "${CWHITE}Done!${CEND}"
@@ -40,7 +40,7 @@ echo -e "    ${CLPURPLE}NONE.${CEND}"
 #= Project specific configuration
 #==============================================================================
 echo -e "${CCYAN}Project (${CYELLOW}${PROJ_NAME}${CCYAN}) specific configuration:${CEND}"
-source ~/Scripts/Projs/${PROJ_NAME}.sh ${PROJ_NAME}
+source ~/MVNEnv/Projs/${PROJ_NAME}.sh ${PROJ_NAME}
 
 #==============================================================================
 #= Configuring CSCOPE

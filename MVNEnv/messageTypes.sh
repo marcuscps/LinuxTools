@@ -1,6 +1,6 @@
 #!/bin/bash
 
-. ~/Scripts/defineColors.sh
+. ~/MVNEnv/defineColors.sh
 
 MSG_INFO="${SCRIPT_OUTPUT_PREFIX}${CYELLOW}INFO:${CEND}  "
 MSG_ERROR="${SCRIPT_OUTPUT_PREFIX}${CRED}ERROR:${CEND} "

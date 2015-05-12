@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source ~/Scripts/defineColors.sh
+source ~/MVNEnv/defineColors.sh
 
 if [ "${EUID}" = "0" ]; then
 	FCOLOR="\[${CRED}\]"

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-. ~/Scripts/defineColors.sh
+. ~/MVNEnv/defineColors.sh
 
 WRK_DIR=${PROJ_BASE_DIR}
 DST_DIR=~/cscope/indexes/${PROJ_NAME}
