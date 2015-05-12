@@ -11,3 +11,4 @@ cp ~/.vimrc ./Vimrc
 cp ~/.gitconfig ./Gitconfig
 cp ~/.inputrc ./Inputrc
 
+find ./ -name *~ -exec rm {} \;
