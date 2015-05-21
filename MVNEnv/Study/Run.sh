@@ -1,7 +1,5 @@
 #!/bin/bash
 
-. ~/MVNEnv/defineColors.sh
-
 ME=`basename $0`
 
 # Options

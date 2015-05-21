@@ -1,8 +1,6 @@
 #!/bin/bash
 
-. ~/MVNEnv/defineColors.sh
-
-export SD=~/MVNEnv/Study
+export SD=${ENV_DIR}/Study
 export PATH=${PATH}:$SD
 
 echo -e "    ${CLPURPLE}SD:       ${CYELLOW}${SD}${CEND}"

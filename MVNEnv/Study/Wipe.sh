@@ -1,7 +1,5 @@
 #!/bin/bash
 
-. ~/MVNEnv/defineColors.sh
-
 for iii in `find ./ -name bin -o -name .bin.debug`; do
 	rm ${iii}
 	if [ "$?" == "0" ]; then
