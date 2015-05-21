@@ -1,6 +1,6 @@
 #!/bin/bash
 
-for iii in `ls ${ENV_DIR}/AutoComplete/ | grep -v loadAll`; do
-	source ${ENV_DIR}/AutoComplete/$iii
+for iii in `find ${ENV_DIR}/AutoComplete/ -type f | grep -v loadAll`; do
+	source $iii
 done
 
