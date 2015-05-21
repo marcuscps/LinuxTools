@@ -17,9 +17,8 @@ rm -f ./MVNEnv/Projs/{ICache.h,IMultimedia.sh,Security.sh,Tizen.sh,Default}
 # Removing cscope indexes.
 rm -rf ./cscope/indexes/*
 # Removing backup files
-find ./ -name *~ -ecev rm {} +
+find ./ -name *~ -exec rm {} +
 # Remove Tizen related files/directories
 find . -name Tizen* -exec rm -rf {} +
-echo 2
 find . -name tizen* -exec rm -rf {} +
 
