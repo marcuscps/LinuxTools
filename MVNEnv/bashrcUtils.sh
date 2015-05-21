@@ -10,4 +10,5 @@ export SSH_ASKPASS=ssh-askpass
 
 source ${ENV_DIR}/defineColors.sh
 source ${ENV_DIR}/definePrompt.sh
+source ${ENV_DIR}/AutoComplete/loadAll.sh
 
