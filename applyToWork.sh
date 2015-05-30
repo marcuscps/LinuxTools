@@ -2,9 +2,12 @@
 
 mkdir work
 cd work
-cp -r ../* ./
 
-mv Bashrc .bashrc
+for iii in `ls ../ | grep -v work`; do
+	cp -r ../${iii} ./
+done
+
+
 mv Gitconfig .gitconfig
 mv Inputrc .inputrc
 mv Vim .vim
