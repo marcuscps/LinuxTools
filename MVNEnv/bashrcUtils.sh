@@ -12,3 +12,8 @@ source ${ENV_DIR}/defineColors.sh
 source ${ENV_DIR}/definePrompt.sh
 source ${ENV_DIR}/AutoComplete/loadAll.sh
 
+# ssh-agent
+# eval $(ssh-agent) > /dev/null
+
+# source ${ENV_DIR}/loadAllSSHKeys.sh
+
