@@ -1,6 +1,6 @@
 #!/bin/bash
 
-for iii in `find ./ -name bin -o -name .bin.debug`; do
+for iii in `find ./ -name bin -o -name .bin.debug -o -name .tmp -o -name .tmp2`; do
 	rm ${iii}
 	if [ "$?" == "0" ]; then
 		echo -e "    ${CGREEN}deleted: ${CLPURPLE}${iii}${CEND}"
