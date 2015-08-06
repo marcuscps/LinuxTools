@@ -281,6 +281,7 @@ autocmd BufWinEnter \[Buf\ List\] setl nonumber
 let g:miniBufExplAutoStart = 1
 let g:miniBufExplBuffersNeeded = 1
 let g:miniBufExplCycleArround = 1
+let g:miniBufExplTabWrap = 0
 " Control + VIM Direction keys to navigate windows
 noremap <C-J>     <C-W>j
 noremap <C-K>     <C-W>k
