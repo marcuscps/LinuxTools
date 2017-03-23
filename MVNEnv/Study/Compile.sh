@@ -1,6 +1,6 @@
 #!/bin/bash
 
-ME=`basename $0`
+ME=$(basename "$0")
 
 mode="prod"
 buildRequired=0
@@ -36,44 +36,44 @@ function is_build_required {
 
 	# Check binary is found
 	if [ ! -f ./bin ]; then
-		echo -e "${CCYANlll}Binary not found. ${CYELLOW}Forcing rebuild.${CEND}"
-		eval $__resultVar=1
+		echo -e "${CCYAN}Binary not found. ${CYELLOW}Forcing rebuild.${CEND}"
+		eval "$__resultVar=1"
 		return 1
 	fi
 
 	# Checks whether debug info is necessary and/or desired.
 	if [ "${mode}" == "debug" ]; then
 		if [ ! -f ./.bin.debug ]; then
-			echo -e "${CCYANlll}Debug info required. ${CYELLOW}Forcing rebuild.${CEND}"
-			eval $__resultVar=1
+			echo -e "${CCYAN}Debug info required. ${CYELLOW}Forcing rebuild.${CEND}"
+			eval "$__resultVar=1"
 			return 1
 		fi
 	else
 		if [ -f ./.bin.debug ]; then
 			echo -e "${CCYAN}Debug info not desired. ${CYELLOW}Forcing rebuild.${CEND}"
-			eval $__resultVar=1
+			eval "$__resultVar=1"
 			return 1
 		fi
 	fi
 
 	# Check file time stamps against binary time stamp.
-	binTS=`stat -c%Y bin`
-	for iii in `ls *.cpp`; do
-		srcTS=`stat -c%Y ${iii}`
-		if [ ${srcTS} -gt ${binTS} ]; then
+	binTS=$(stat -c%Y bin)
+	for iii in *.cpp; do
+		srcTS=$(stat -c%Y "${iii}")
+		if [ "${srcTS}" -gt "${binTS}" ]; then
 			echo -e "${CCYAN}Source file ${CLGREEN}${iii} ${CCYAN}updated. ${CYELLOW}Forcing rebuild.${CEND}"
-			eval $__resultVar=1
+			eval "$__resultVar=1"
 			return 1
 		fi
 	done
 
-	eval $__resultVar=0
+	eval "$__resultVar=0"
 	return 0
 }
 
 
 if [ "${buildRequired}" == "0" ]; then
-	is_build_required buildRequired ${mode}
+	is_build_required buildRequired "${mode}"
 fi
 
 if [ "${buildRequired}" == "1" ]; then
@@ -84,7 +84,7 @@ if [ "${buildRequired}" == "1" ]; then
 	fi
 
 	echo -e "${CCYAN}Building...${CEND}"
-	g++ -Wall -pedantic -o bin *.cpp -std=c++11 ${debugOpts}
+	g++ -std=c++14 -Wall -pedantic ${debugOpts} -o bin -- ./*.cpp
 
 	if [ "$?" == "0" ]; then
 		echo -e "${CYELLOW}Done.${CEND}"

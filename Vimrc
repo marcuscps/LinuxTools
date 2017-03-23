@@ -133,14 +133,14 @@ set smartindent
 set cindent
 " Toggle auto indent for code paste using F3
 set pastetoggle=<F3>
-" real tabs please!
+" Use spaces instead of tabs
 set noexpandtab
 " tab spacing (settings below are just to unify it)
-set tabstop=4
+set tabstop=2
 " unify
-set softtabstop=4
+set softtabstop=2
 " unify
-set shiftwidth=4
+set shiftwidth=2
 " use tabs at the start of a line, spaces elsewhere
 set smarttab
 " Wrap lines (or not)

@@ -19,5 +19,5 @@ fi
 echo "Showing continuous logs from the file ${FNAME} ..."
 echo
 
-tail -f ${FNAME} | while read; do echo "$(date +%T.%N) $REPLY"; done
+tail -f ${FNAME} | while read -r; do echo "$(date +%T.%N) $REPLY"; done
 

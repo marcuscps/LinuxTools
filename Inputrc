@@ -5,3 +5,6 @@
 "\e\e[C": forward-word
 "\e\e[D": backward-word
 
+"\C-r": reverse-search-history
+"\C-s": forward-search-history
+

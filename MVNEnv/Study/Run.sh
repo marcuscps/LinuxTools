@@ -1,6 +1,6 @@
 #!/bin/bash
 
-ME=`basename $0`
+ME=$(basename "$0")
 
 # Options
 num=1
@@ -71,34 +71,34 @@ else
 fi
 
 if [ "${buildRequired}" == "1" ]; then
-	${SD}/Compile.sh ${buildOpts}
+	"${SD}/Compile.sh" ${buildOpts}
 	if [ "$?" != "0" ]; then
 		exit 2
 	fi
 fi
 
 # Check input file
-if [ ! -f input${num}.txt ]; then
+if [ ! -f "inputi${num}.txt" ]; then
 	echo -e "${CLRED}Input file   ${CYELLOW}input${num}.txt${CLRED}   not found.${CEND}"
 	exit 3
 fi
 
 # Run it measuring execution time
-startTS=`date +%s%N | cut -b1-13`
+startTS=$(date +%s%N | cut -b1-13)
 if [ "${memTest}" == "1" ]; then
-	cat input${num}.txt | grep -v "^##" | valgrind --tool=memcheck ${memTestOpts} ./bin > .tmp
+	grep -v "^##"	< "input${num}.txt" | valgrind --tool=memcheck ${memTestOpts} ./bin > .tmp
 else
-	cat input${num}.txt | grep -v "^##" | ./bin > .tmp
+	grep -v "^##" < "input${num}.txt" | ./bin > .tmp
 fi
 if [ "$?" != "0" ]; then
 	exit 1
 fi
-endTS=`date +%s%N | cut -b1-13`
+endTS=$(date +%s%N | cut -b1-13)
 
 # Post processing output (remove comments and debug info)
 grep -v "^##" .tmp > .tmp2
 # Pre processing expected output (remove comments)
-grep -v "^##" output${num}.txt > .tmp4
+grep -v "^##" "output${num}.txt" > .tmp4
 
 diffOptions="${diffOptions} ${diffIgnoreS}"
 diff .tmp4 .tmp2 ${diffOptions} > .tmp3
@@ -112,7 +112,6 @@ if [ "$?" != "0" ]; then
 	echo -e "${CYELLOW}==============================================================================${CEND}"
 	echo -e "${CLRED}TEST FAILED!! Check diff above!${CEND}"
 else
-	colorOutput=${CGREEN}
 	echo -e "${CGREEN}TEST PASSED!${CEND}"
 	echo -e "${CYELLOW}=================================== ${CGREEN}OUTPUT${CYELLOW} ===================================${CEND}"
 	cat .tmp

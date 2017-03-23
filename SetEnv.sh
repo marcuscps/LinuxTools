@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Configuration
-DEFAULT_PROJ_FILE=`readlink ${ENV_DIR}/Projs/Default`
+DEFAULT_PROJ_FILE=$(readlink "${ENV_DIR}"/Projs/Default)
 DEFAULT_PROJ=${DEFAULT_PROJ_FILE/.sh/}
 
 #==============================================================================
@@ -18,12 +18,12 @@ if [ "${PROJ_NAME}" == "" ]; then
 fi
 
 echo -e "Searching for project configuration file: ${CCYAN}${ENV_DIR}/Projs/${PROJ_NAME}.sh${CEND}"
-if [ ! -f ${ENV_DIR}/Projs/${PROJ_NAME}.sh ]; then
+if [ ! -f "${ENV_DIR}/Projs/${PROJ_NAME}.sh" ]; then
 	echo -e "    ${CLRED}FAIL.${CEND}"
 	echo -e "${CLRED}Invalid project name. Aborting (no side effects)...${CEND}"
 	echo -e "${CCYAN}Available projects:${CEND}"
-	for ii in `ls ${ENV_DIR}/Projs`; do
-		echo -e "\t${CYELLOW}${ii%.sh}${CEND}"
+	find "${ENV_DIR}"/Projs/ -executable | while read -r ii; do
+		echo -e "\t${CYELLOW}$(basename "${ii}" | cut -d'.' -f1)${CEND}"
 	done
 	echo -e "${CWHITE}Done!${CEND}"
 	return 1
@@ -39,7 +39,7 @@ echo -e "    ${CLPURPLE}NONE.${CEND}"
 #= Project specific configuration
 #==============================================================================
 echo -e "${CCYAN}Project (${CYELLOW}${PROJ_NAME}${CCYAN}) specific configuration:${CEND}"
-source ${ENV_DIR}/Projs/${PROJ_NAME}.sh ${PROJ_NAME}
+source "${ENV_DIR}/Projs/${PROJ_NAME}.sh" "${PROJ_NAME}"
 
 #==============================================================================
 #= Configuring CSCOPE
@@ -58,7 +58,7 @@ export PROJ_NAME
 export PROJ_BASE_DIR
 
 echo -e "${CCYAN}Switching to project base dir...${CEND}"
-cd ${PROJ_BASE_DIR}
+cd "${PROJ_BASE_DIR}" || return 1
 
 echo -e "${CWHITE}Done!${CEND}"
 
