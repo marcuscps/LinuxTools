@@ -1,0 +1,8 @@
+./LDD3.sh
+./StudyCommon.sh
+./Study.sh
+./URI.shLDD3.sh
+./StudyCommon.sh
+./Study.sh
+./URI.sh
+./preserveProjs.txt

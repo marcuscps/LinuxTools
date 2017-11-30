@@ -22,7 +22,7 @@ if [ ! -f "${ENV_DIR}/Projs/${PROJ_NAME}.sh" ]; then
 	echo -e "    ${CLRED}FAIL.${CEND}"
 	echo -e "${CLRED}Invalid project name. Aborting (no side effects)...${CEND}"
 	echo -e "${CCYAN}Available projects:${CEND}"
-	find "${ENV_DIR}"/Projs/ -executable | while read -r ii; do
+	find "${ENV_DIR}"/Projs/ -executable -exec basename {} \; | while read -r ii; do
 		echo -e "\t${CYELLOW}$(basename "${ii}" | cut -d'.' -f1)${CEND}"
 	done
 	echo -e "${CWHITE}Done!${CEND}"

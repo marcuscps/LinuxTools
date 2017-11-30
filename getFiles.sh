@@ -1,24 +1,29 @@
 #/bin/bash
 
+rm -rf ./Vim ./Vimrc
+
 cp ~/SetEnv.sh ./
 cp -r ~/MVNEnv ./
-ln -sf Study.sh ./MVNEnv/Projs/Default
-cp -r ~/cscope ./
 cp -r ~/.vim ./Vim
 cp ~/.vimrc ./Vimrc
-cp ~/.gitconfig ./Gitconfig
 cp ~/.inputrc ./Inputrc
 
-# Using personal email
-sed -i s/m.vinicius@samsung.com/marcus.cps@gmail.com/ Gitconfig
+cp ~/.gitconfig ./Gitconfig
+# Removing email
+sed -i '/email = /d' Gitconfig
 
+ln -sf Study.sh ./MVNEnv/Projs/Default
 # Removing copyrighted projects
-rm -f ./MVNEnv/Projs/{ICache.h,IMultimedia.sh,Security.sh,Tizen.sh,Default}
-# Removing cscope indexes.
-rm -rf ./cscope/indexes/*
+cd MVNEnv/Projs/
+find . ! -path . | grep -vFf preserveProjs.txt > /tmp/MVNEnvProjsDelete
+xargs rm < /tmp/MVNEnvProjsDelete
+cd -
+
+if [ -f ~/cscope ]; then
+	cp -r ~/cscope ./
+	# Removing cscope indexes.
+	rm -rf ./cscope/indexes/*
+fi
+
 # Removing backup files
 find ./ -name *~ -exec rm {} +
-# Remove Tizen related files/directories
-find . -name Tizen* -exec rm -rf {} +
-find . -name tizen* -exec rm -rf {} +
-

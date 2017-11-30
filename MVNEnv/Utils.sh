@@ -3,7 +3,7 @@
 function elapsedTime()
 {
 	if [ "$#" -eq "0" ]; then
-        	echo $(date '+%s')
+        	date '+%s'
 	else
         	local  stime=$1
 		etime=$(date '+%s')

@@ -18,7 +18,12 @@ source "${ENV_DIR}/AutoComplete/loadAll.sh"
 
 # ssh-agent
 # eval $(ssh-agent) > /dev/null
-# source "${ENV_DIR}/loadAllSSHKeys.sh"
+# source ${ENV_DIR}/loadAllSSHKeys.sh
+
+# Activate LS colors
+export CLICOLOR=1
+# export LSCOLORS=ExFxCxDxBxegedabagacad
+export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx
 
 # General aliases
 alias ..='cd ..'
@@ -27,6 +32,9 @@ alias ll="ls -l"
 
 # Git aliases
 alias Git-gc-all="git -c gc.reflogExpire=0 -c gc.reflogExpireUnreachable=0 -c gc.rerereresolved=0 -c gc.rerereunresolved=0 -c gc.pruneExpire=now gc --aggressive"
+
+# Git config
+export LESS=${LESS}R
 
 # Load tmux automatically on login
 if [ "$TERM" != "nuclide" ] && [ -t 0 ] && [ -z "$TMUX" ] && which tmux >/dev/null 2>&1 && [[ "$(tmux -V)" == "tmux 1.8" || "$(tmux -V)" == "tmux 2.2" ]]; then

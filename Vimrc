@@ -216,7 +216,7 @@ autocmd BufReadPost *
 set viminfo^=%
 
 
-so ${ENV_DIR}/cscope_maps.vim
+"so ${ENV_DIR}/cscope_maps.vim
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

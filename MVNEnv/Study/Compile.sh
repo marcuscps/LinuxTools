@@ -84,7 +84,7 @@ if [ "${buildRequired}" == "1" ]; then
 	fi
 
 	echo -e "${CCYAN}Building...${CEND}"
-	g++ -std=c++14 -Wall -pedantic ${debugOpts} -o bin -- ./*.cpp
+	g++ -Wall -pedantic -o bin -- ./*.cpp -std=c++11 "${debugOpts}"
 
 	if [ "$?" == "0" ]; then
 		echo -e "${CYELLOW}Done.${CEND}"

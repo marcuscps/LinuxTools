@@ -71,14 +71,14 @@ else
 fi
 
 if [ "${buildRequired}" == "1" ]; then
-	"${SD}/Compile.sh" ${buildOpts}
+	"${SD}"/Compile.sh ${buildOpts}
 	if [ "$?" != "0" ]; then
 		exit 2
 	fi
 fi
 
 # Check input file
-if [ ! -f "inputi${num}.txt" ]; then
+if [ ! -f inputi"${num}".txt ]; then
 	echo -e "${CLRED}Input file   ${CYELLOW}input${num}.txt${CLRED}   not found.${CEND}"
 	exit 3
 fi
@@ -86,9 +86,9 @@ fi
 # Run it measuring execution time
 startTS=$(date +%s%N | cut -b1-13)
 if [ "${memTest}" == "1" ]; then
-	grep -v "^##"	< "input${num}.txt" | valgrind --tool=memcheck ${memTestOpts} ./bin > .tmp
+	grep -v "^##"	< inputi"${num}".txt | valgrind --tool=memcheck "${memTestOpts}" ./bin > .tmp
 else
-	grep -v "^##" < "input${num}.txt" | ./bin > .tmp
+	grep -v "^##" < input"${num}".txt | ./bin > .tmp
 fi
 if [ "$?" != "0" ]; then
 	exit 1
@@ -98,7 +98,7 @@ endTS=$(date +%s%N | cut -b1-13)
 # Post processing output (remove comments and debug info)
 grep -v "^##" .tmp > .tmp2
 # Pre processing expected output (remove comments)
-grep -v "^##" "output${num}.txt" > .tmp4
+grep -v "^##" output"${num}".txt > .tmp4
 
 diffOptions="${diffOptions} ${diffIgnoreS}"
 diff .tmp4 .tmp2 ${diffOptions} > .tmp3

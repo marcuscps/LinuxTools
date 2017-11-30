@@ -21,8 +21,8 @@ fi
 
 echo -e "${CWHITE}Test cases: ${CGREEN}${inputs}${CEND}"
 
-cp -a "${SD}/../TEMPLATE" "$1"
-mv "$1/TEMPLATE.cpp" "$1/$1.cpp"
+cp -a "${SD}"/../TEMPLATE "$1"
+mv "$1"/TEMPLATE.cpp "$1"/"$1".cpp
 cd "$1" || exit 1
 
 for iii in $(seq 1 "${inputs}"); do

@@ -1,11 +1,4 @@
-[core]
-	editor = vim
 [user]
-	name = Marcus Nascimento
-	email = marcus.cps@gmail.com
-[color]
-	ui = true
-[merge]
-	tool = meld
-[push]
-	default = simple
+	name = Marcus Vinicius do Nascimento
+[alias]
+	st = status
